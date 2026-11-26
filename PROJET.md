@@ -15,4 +15,4 @@
 | Lancer le front | `cd front && npm run dev` |
 
 ## Stories réalisées
-_(aucune pour l'instant)_
+- Libre 1 : vue Archipel France et fiches territoriales (Hexagone + outre-mer) avec données simulées par source (Closes #1)

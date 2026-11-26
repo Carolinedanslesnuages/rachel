@@ -1,7 +1,15 @@
 /** Mise en forme française des nombres, périodes et évolutions. */
 export const nombre = (valeur: number | null) => (valeur === null ? '—' : valeur.toLocaleString('fr-FR'))
 
-/** « 2026-10 » → « octobre 2026 ». */
+/** « 17,2 % », « 28,9 °C » : la valeur suivie de son unité. */
+export function valeurAvecUnite(valeur: number, unite: string): string {
+  const valeurFormatee = valeur.toLocaleString('fr-FR')
+  if (unite === '') return valeurFormatee
+  const separateur = unite === '%' || unite === '°C' ? ' ' : ' '
+  return `${valeurFormatee}${separateur}${unite}`
+}
+
+/** « 2026-10 » →« octobre 2026 ». */
 export function periode(mois: string | null): string {
   if (!mois) return '—'
   const [annee, numero] = mois.split('-').map(Number)
