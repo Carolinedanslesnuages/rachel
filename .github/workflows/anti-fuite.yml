@@ -1,0 +1,22 @@
+name: anti-fuite
+
+# Aucun secret (clé, jeton, mot de passe) dans le dépôt : gitleaks, binaire officiel vérifié par
+# son empreinte. Sur une PR, ses commits ; sur main, tout l'historique. Faux positifs : .gitleaks.toml.
+# Contrôle fourni par Constance, épinglé à une version.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  secrets:
+    name: Anti-fuite (gitleaks)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: Carolinedanslesnuages/constance/anti-fuite@df8fc5f62f37d23bf8189e24c887f1ee6b3c5b97 # v1.2.0
